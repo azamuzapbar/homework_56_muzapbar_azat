@@ -3,6 +3,7 @@ from django.urls import reverse
 from webapp.models import Product
 from webapp.form import ProductForm
 
+
 def add_product(request):
     if request.method == 'GET':
         form = ProductForm()
@@ -21,25 +22,12 @@ def add_product(request):
 def update_product(request, pk):
     product = get_object_or_404(Product, pk=pk)
     if request.method == 'GET':
-        form = ProductForm(initial={
-            'title': product.title,
-            'image': product.image,
-            'text': product.text,
-            'category': product.category,
-            'remainder': product.remainder,
-            'cost': product.cost
-        })
+        form = ProductForm(instance=product)
         return render(request, 'update_view.html', context={'form': form, 'product': product})
     elif request.method == 'POST':
-        form = ProductForm(data=request.POST)
+        form = ProductForm(data=request.POST, instance=product)
         if form.is_valid():
-            product.title = form.cleaned_data['title']
-            product.image = form.cleaned_data['image']
-            product.text = form.cleaned_data['text']
-            product.category = form.cleaned_data['category']
-            product.remainder = form.cleaned_data['remainder']
-            product.cost = form.cleaned_data['cost']
-            product.save()
+            form.save()
             return redirect(reverse('main'))
         else:
             return render(request, 'update_view.html', context={'form': form, 'product': product})
