@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Guest book {%endblock%}
+{% block menu %}
+{% endblock %}
+{% block content %}
+
+{% for product in products %}
+{% csrf_token %}
+<div class="row">
+    <div class="col-lg-4">
+        <img src="{% static 'images/' %}{{ product.image }}" alt="{{ product.title }}"/>
+        <div class="box-element product">
+            <h6><strong>Title: {{ product.title }}</strong></h6>
+            <h6><strong>Cost:{{ product.cost }}</strong></h6>
+            <h6><strong>category: {{ product.category }}</strong></h6>
+            <hr>
+            <a class="btn btn-outline-success" href="{% url 'product_detail' product.pk %}">Details</a>
+            <a class="btn btn-outline-success" href="{% url 'update_view' product.pk %}">Update</a>
+            <a class="btn btn-outline-success" href="{% url 'delete_product' product.pk %}">Delete</a>
+        </div>
+    </div>
+</div>
+{%endfor%}
+{% endblock content %}

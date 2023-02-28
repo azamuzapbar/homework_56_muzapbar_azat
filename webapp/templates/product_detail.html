@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Guest book {%endblock%}
+{% block menu %}
+{% endblock %}
+{% block content %}
+<div class="cart-row">
+    <img src="{% static 'images/' %}{{ product.image }}" alt="{{ product.title }}"/>
+</div>
+<p>{{product.title }}</p>
+<p>{{ product.text }}</p>
+<p>{{ product.cost }}</p>
+<p>{{ product.image }}</p>
+<p>{{ product.remainder }}</p>
+<p>{{ product.category }}</p>
+{% endblock %}
