@@ -7,10 +7,9 @@
 <div class="cart-row">
     <img src="{% static 'images/' %}{{ product.image }}" alt="{{ product.title }}"/>
 </div>
-<p>{{product.title }}</p>
-<p>{{ product.text }}</p>
-<p>{{ product.cost }}</p>
-<p>{{ product.image }}</p>
-<p>{{ product.remainder }}</p>
-<p>{{ product.category }}</p>
+<p>Title :{{product.title }}</p>
+<p>Description: {{ product.text }}</p>
+<p>Cost: {{ product.cost }}</p>
+<p>Remainder: {{ product.remainder }}</p>
+<p>Category: {{ product.category }}</p>
 {% endblock %}
